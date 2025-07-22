@@ -1,0 +1,143 @@
+
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #b9bb9f, #d3ce9c);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: #333;
+}
+
+/* Main Container */
+.container {
+  width: 95%;
+  max-width: 700px;
+  background-color: rgb(252, 247, 224);
+  padding: 25px 30px;
+  border-radius: 40px;
+  box-shadow: 0 0 60px rgba(254, 39, 71, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh;
+  overflow: hidden;
+}
+
+/* Heading Styles */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.welcome-box {
+  /* margin-bottom: 10px; */
+  text-align: center;
+  background: #eef;
+  padding: 2px;
+  border-radius: 25px;
+  margin-bottom: 1px;
+}
+
+/* Chat Box */
+#chat-box {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 20px;
+  background-color: #f4f6f9;
+  margin: 8px 0 8px;
+}
+
+/* Messages */
+.user, .bot {
+  padding: 10px 15px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.user {
+  background-color: #d1e7dd;
+  text-align: right;
+  color: #0f5132;
+  font-weight: 500;
+}
+
+.bot {
+  background-color: #dbeafe;
+  text-align: left;
+  color: #1e3a8a;
+  font-weight: 500;
+}
+
+/* Input Area */
+.input-area {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #4a90e2;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #09fff7;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #e7a61b;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    height: 95vh;
+  }
+
+  .input-area {
+    flex-direction: column;
+  }
+
+  input[type="text"],
+  button {
+    width: 100%;
+  }
+}
+
+
+
+
+/* ================================================================ */
+

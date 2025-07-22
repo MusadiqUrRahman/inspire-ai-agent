@@ -1,0 +1,153 @@
+
+<!-- ✨Note✨: this code not used javascript -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>InspireAI - Gemini Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Welcome Message -->
+    <div class="welcome-box">
+      <h2>✨ Welcome to <span>InspireAI</span> ✨</h2>
+      <p><h4>
+        This is not just a chatbot it's your friend, your motivator, and your guide. 🤝<br><br>
+        Ask anything whether you're feeling low, confused, or just need a dose of hope. 🌈<br>
+        InspireAI will listen, guide, and uplift your spirit  one thoughtful message at a time.
+      <h4></p>
+    </div>
+
+    <!-- Chat Title -->
+    <h1 class="chat-title">🧠 InspireAI</h1>
+
+    <!-- Chat Box -->
+    <div id="chat-box" class="chat-box"></div>
+
+    <!-- Input Area -->
+    <div class="input-area">
+      <input type="text" id="message" placeholder="Type your message here..." autocomplete="off" onkeydown="handleEnter(event)">
+      <button id="sendBtn" onclick="sendMessage()">🚀 Send</button>
+    </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const msgInput = document.getElementById("message");
+      const msg = msgInput.value.trim();
+      if (!msg) return;
+
+      const chatBox = document.getElementById("chat-box");
+      const sendBtn = document.getElementById("sendBtn");
+
+      chatBox.innerHTML += `<div class='user'>🧑‍💻 ${msg}</div>`;
+      msgInput.value = "";
+      sendBtn.disabled = true;
+      sendBtn.innerText = "⏳ Sending...";
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      try {
+        const response = await fetch("/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        });
+
+        const data = await response.json();
+        const botMessage = data.response || "⚠️ No response received.";
+
+        chatBox.innerHTML += `<div class='bot'>🤖 ${formatText(botMessage)}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } catch (err) {
+        chatBox.innerHTML += `<div class='bot error'>❌ Error connecting to server.</div>`;
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.innerText = "🚀 Send";
+      }
+    }
+
+    function handleEnter(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    }
+
+    function formatText(text) {
+      // Simple Markdown-like formatting support
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+        .replace(/\*(.*?)\*/g, '<i>$1</i>')
+        .replace(/\n/g, '<br>');
+    }
+  </script>
+</body>
+</html>
+
+
+<!-- ========================================================= -->
+
+<!-- note: this code not used javascript -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>InspireAI - Gemini Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container"> -->
+
+    <!-- Welcome Message -->
+    <!-- <div class="welcome-box">
+      <h2>✨ Welcome to <span>InspireAI</span> ✨</h2>
+      <p>
+        This is not just a chatbot it's your friend, your motivator, and your guide. 🤝<br><br>
+        Ask anything whether you're feeling low, confused, or just need a dose of hope. 🌈<br>
+        InspireAI will listen, guide, and uplift your spirit  one thoughtful message at a time.
+      </p>
+    </div> -->
+
+    <!-- Chat Title -->
+    <!-- <h1 class="chat-title">🧠 InspireAI</h1> -->
+
+    <!-- Chat Box -->
+    <!-- <div id="chat-box" class="chat-box"></div> -->
+
+    <!-- Input Area -->
+    <!-- <div class="input-area">
+      <input type="text" id="message" placeholder="Type your message here..." autocomplete="off">
+      <button onclick="sendMessage()">🚀Send</button>
+    </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const msg = document.getElementById("message").value.trim();
+      if (!msg) return;
+
+      const chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML += `<div class='user'>🧑‍💻 ${msg}</div>`;
+
+      const response = await fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+      });
+
+      const data = await response.json();
+      chatBox.innerHTML += `<div class='bot'>🤖 ${data.response.replace(/\n/g, "<br>")}</div>`;
+      document.getElementById("message").value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html> -->
+
+
+
+<!-- ================================================================= -->
